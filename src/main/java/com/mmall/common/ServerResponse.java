@@ -1,7 +1,12 @@
 package com.mmall.common;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.io.Serializable;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//保证序列化json的时候，如果是null的对象，key会消失
 public class ServerResponse<T> implements Serializable {
 
     private int status;
@@ -28,6 +33,8 @@ public class ServerResponse<T> implements Serializable {
         this.msg = msg;
     }
 
+    @JsonIgnore
+    //使之不在json序列化结果之中
     public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();
     }
@@ -48,7 +55,7 @@ public class ServerResponse<T> implements Serializable {
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode());
     }
 
-    public static <T> ServerResponse<T> createBySuccessMsg(String msg){
+    public static <T> ServerResponse<T> createBySuccessMessage(String msg){
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),msg);
     }
 
@@ -62,5 +69,12 @@ public class ServerResponse<T> implements Serializable {
 
     public static <T> ServerResponse<T> createByError(){
         return new ServerResponse<T>(ResponseCode.ERROR.getCode(), ResponseCode.ERROR.getDesc());
+    }
+
+    public static <T> ServerResponse<T> createByErrorMessage(String message){
+        return new ServerResponse<T>(ResponseCode.ERROR.getCode(),message);
+    }
+    public static <T> ServerResponse<T> createByErrorMessage(int errorCode, String errorMessage){
+        return new ServerResponse<T>(errorCode, errorMessage);
     }
 }
