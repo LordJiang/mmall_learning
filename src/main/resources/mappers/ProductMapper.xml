@@ -176,4 +176,47 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_product
+    order by id asc
+  </select>
+
+  <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_product
+
+    <!--
+    在一些条件下会出现问题可以采用硬解码的方式对其进行修正
+    <if test="productName != null">
+      where name like #{productName}
+    </if>
+    <if test="productId != null">
+      and id = #{productId}
+    </if>-->
+
+    <!--
+    看起来有些low，但实际效果是可以的，可以使用where标签
+    where 1 = 1
+    <if test="productName != null">
+      and name like #{productName}
+    </if>
+    <if test="productId != null">
+      and id = #{productId}
+    </if>-->
+
+    <where>
+      <if test="productName != null">
+        and name like #{productName}
+      </if>
+      <if test="productId != null">
+        and id = #{productId}
+      </if>
+    </where>
+
+  </select>
+
 </mapper>
