@@ -148,7 +148,7 @@ public class IProductServiceImpl implements IProductService {
         productListVo.setSubtitle(product.getSubtitle());
         productListVo.setPrice(product.getPrice());
         productListVo.setStatus(product.getStatus());
-        productListVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.happymmall.com/"));
+        productListVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://iamge.imooc01.com/"));
         return productListVo;
     }
 

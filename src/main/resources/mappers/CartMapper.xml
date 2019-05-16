@@ -148,7 +148,8 @@
   </delete>
 
   <update id="checkedOrUncheckedProduct" parameterType="map">
-    update from mmall_cart
+    /*出现的问题：写成了update from mmall_cart*/
+    update mmall_cart
     set checked = #{checked},
     update_time = now()
     where user_id = #{userId}
