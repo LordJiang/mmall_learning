@@ -1,7 +1,6 @@
 package com.mmall.util;
 
 
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +17,12 @@ public class FTPUtil {
     private static String ftpIp = PropertiesUtil.getProperty("ftp.server.ip");
     private static String ftpUser = PropertiesUtil.getProperty("ftp.user");
     private static String ftpPass = PropertiesUtil.getProperty("ftp.pass");
+
+    private String ip;
+    private int port;
+    private String user;
+    private String pwd;
+    private FTPClient ftpClient;
 
     public FTPUtil(String ip, int port, String user, String pwd){
         this.ip = ip;
@@ -70,37 +75,6 @@ public class FTPUtil {
             logger.error("连接FTP服务器异常",e);
         }
         return isSuccess;
-    }
-
-
-    private String ip;
-    private int port;
-    private String user;
-    private String pwd;
-    private FTPClient ftpClient;
-
-    public static String getFtpIp() {
-        return ftpIp;
-    }
-
-    public static void setFtpIp(String ftpIp) {
-        FTPUtil.ftpIp = ftpIp;
-    }
-
-    public static String getFtpUser() {
-        return ftpUser;
-    }
-
-    public static void setFtpUser(String ftpUser) {
-        FTPUtil.ftpUser = ftpUser;
-    }
-
-    public static String getFrpPass() {
-        return ftpPass;
-    }
-
-    public static void setFrpPass(String frpPass) {
-        FTPUtil.ftpPass = frpPass;
     }
 
     public String getIp() {

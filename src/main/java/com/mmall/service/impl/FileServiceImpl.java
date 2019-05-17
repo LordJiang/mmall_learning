@@ -27,7 +27,7 @@ public class FileServiceImpl implements IFileService {
         //出现的问题如果A:abc.jpg B:abc.jpg 那么B上传的时候会把A给覆盖
         String uploadFileName = UUID.randomUUID().toString()+"."+fileExtensionName;
 
-        logger.info("开始上传文件，上传文件的文件名:{},上传的路径:{},新文件名:{}",fileName,path,uploadFileName);
+        logger.info("开始上传文件,上传文件的文件名:{},上传的路径:{},新文件名:{}",fileName,path,uploadFileName);
 
         File fileDir = new File(path);
         if(!fileDir.exists()){
@@ -41,7 +41,7 @@ public class FileServiceImpl implements IFileService {
             //文件已经上传成功
             FTPUtil.uploadFile(Lists.newArrayList(targetFile));
             //已经上传到ftp服务器上
-            //todo 上传完成后，删除upload下面的文件
+            //上传完成后，删除upload下面的文件
             targetFile.delete();
         } catch (IOException e) {
             logger.error("上传文件异常",e);
