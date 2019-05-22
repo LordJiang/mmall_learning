@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class OrderItemVo {
 
-    private long orderNo;
+    private Long orderNo;
 
     private Integer productId;
 
@@ -21,11 +21,11 @@ public class OrderItemVo {
 
     private String createTime;
 
-    public long getOrderNo() {
+    public Long getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(long orderNo) {
+    public void setOrderNo(Long orderNo) {
         this.orderNo = orderNo;
     }
 
