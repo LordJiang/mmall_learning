@@ -467,17 +467,12 @@ public class OrderServiceImpl implements IOrderService {
         List<OrderItem> orderItemList = orderItemMapper.getByOrderNoUserId(orderNo,userId);
         for(OrderItem orderItem : orderItemList){
             // 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail
-            GoodsDetail goods1 = GoodsDetail.newInstance(orderItem.getProductId().toString(), orderItem.getProductName(),
+            GoodsDetail goods = GoodsDetail.newInstance(orderItem.getProductId().toString(), orderItem.getProductName(),
                     BigDecimalUtil.mul(orderItem.getCurrentUnitPrice().doubleValue(),new Double(100).doubleValue()).longValue(),
                     orderItem.getQuantity());
             // 创建好一个商品后添加至商品明细列表
-            goodsDetailList.add(goods1);
-
+            goodsDetailList.add(goods);
         }
-
-        /*// 继续创建并添加第一条商品信息，用户购买的产品为“黑人牙刷”，单价为5.00元，购买了两件
-        GoodsDetail goods2 = GoodsDetail.newInstance("goods_id002", "xxx牙刷", 500, 2);
-        goodsDetailList.add(goods2);*/
 
         // 创建扫码支付请求builder，设置请求参数
         AlipayTradePrecreateRequestBuilder builder = new AlipayTradePrecreateRequestBuilder()
