@@ -1,6 +1,9 @@
 package com.mmall.pojo;
 
+import com.google.common.collect.Lists;
+
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private Integer id;
