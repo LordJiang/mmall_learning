@@ -6,7 +6,6 @@ import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Stack;
 
 /**
  * @author goleaf
@@ -15,7 +14,7 @@ import java.util.Stack;
 @Slf4j
 public class CookieUtil {
 
-    private final static String COOKIE_DOMAIN = ".mmall.fun";
+    private final static String COOKIE_DOMAIN = "mmall.fun";
     private final static String COOKIE_NAME = "mmall_login_token";
 
     public static String readLoginToken(HttpServletRequest request){
