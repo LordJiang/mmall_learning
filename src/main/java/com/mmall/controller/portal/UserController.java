@@ -56,6 +56,7 @@ public class UserController {
         //session.removeAttribute(Const.CURRENT_USER);
         String loginToken = CookieUtil.readLoginToken(httpServletRequest);
         CookieUtil.delLoginToken(httpServletRequest,httpServletResponse);
+        RedisPoolUtils.del(loginToken);
         return ServerResponse.createBySuccess();
     }
 
